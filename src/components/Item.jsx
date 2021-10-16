@@ -36,7 +36,6 @@ const Item = ({ item, index, moveItem, status }) => {
         },
     });
 
-
     const [{ isDragging }, drag] = useDrag({
         type: 'item',
         item: { ...item, index },
@@ -45,11 +44,11 @@ const Item = ({ item, index, moveItem, status }) => {
         })
     });
 
-    const [show, setShow] = useState(false);
+    // const [show, setShow] = useState(false);
 
-    const onOpen = () => setShow(true);
+    // const onOpen = () => setShow(true);
 
-    const onClose = () => setShow(false);
+    // const onClose = () => setShow(false);
 
     drag(drop(ref));
 
@@ -59,18 +58,17 @@ const Item = ({ item, index, moveItem, status }) => {
                 ref={ref}
                 style={{ opacity: isDragging ? 0 : 1 }}
                 className={"item"}
-                onClick={onOpen}
+                //onClick={onOpen}
             >
-                {console.log(item)}
                 <div className={"color-bar"} style={{ backgroundColor: status.color }}/>
                 <p className={"item-title"}>{item.content}</p>
                 <p className={"item-status"}>{item.icon}</p>
             </div>
-            <Window
+            {/* <Window
                 item={item}
                 onClose={onClose}
                 show={show}
-            />
+            /> */}
         </Fragment>
     );
 };

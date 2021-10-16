@@ -1,30 +1,29 @@
 import React from 'react';
 
-const TextInput = ({ onSubmit } ) => {
-
-
-  const _onSubmit = (event) => {
+const TextInput = (
+    // {placeholder, onSubmit }
+    ) => {
+  const onSubmit = (event) => {
     const form = event.target;
     event.preventDefault();
 
     const value = form.input.value.trim();
     if (!value) return;
-    console.log("TextInput "+value);
-    onSubmit(value);
+
+    //onSubmit(value);
     form.reset();
   };
 
     return (
       <form
-      
-      onSubmit={_onSubmit} 
+      //onSubmit={onSubmit} 
       //ref={node => (form = node)}
       >
         <input
           type="text"
-          className="item"
+          className="item-title"
           name="input"
-          placeholder={"Add new task"}
+          placeholder={"test brk"}
           //placeholder={placeholder}
           autoComplete="off"
         />
@@ -32,4 +31,4 @@ const TextInput = ({ onSubmit } ) => {
     );
 }
 
-export default TextInput;
+//export default TextInput;

@@ -1,33 +1,33 @@
 const data = [{
     id: 1,
     icon: "⭕️",
-    status: "open",
-    title: "Human Interest Form",
-    content: "Fill out human interest distribution form"
+    status: "backlog",
+    title: "Task 1",
+    content: "Learn about nuclear physics"
 }, {
     id: 2,
     icon: "⭕️",
-    status: "open",
-    title: "Purchase present",
-    content: "Get an anniversary gift"
+    status: "backlog",
+    title: "Task 2",
+    content: "To buy vegetables"
 }, {
     id: 3,
     icon: "⭕️",
-    status: "open",
-    title: "Invest in investments",
-    content: "Call the bank to talk about investments"
+    status: "backlog",
+    title: "Task 3",
+    content: "Play sports"
 }, {
     id: 4,
     icon: "⭕️",
-    status: "open",
-    title: "Daily reading",
-    content: "Finish reading Intro to UI/UX"
+    status: "backlog",
+    title: "Task 4",
+    content: "Finish reading Intro to nuclear physics"
 }
 ];
 
 const statuses = [{
     id: 1,
-    status: "open",
+    status: "backlog",
     icon: "⭕️",
     color: "#EB5A46"
 }, {
@@ -37,7 +37,7 @@ const statuses = [{
     color: "#00C2E0"
 }, {
     id: 3,
-    status: "in review",
+    status: "done",
     icon: "📝",
     color: "#C377E0"
 },
