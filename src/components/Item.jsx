@@ -36,6 +36,7 @@ const Item = ({ item, index, moveItem, status }) => {
         },
     });
 
+
     const [{ isDragging }, drag] = useDrag({
         type: 'item',
         item: { ...item, index },
@@ -60,6 +61,7 @@ const Item = ({ item, index, moveItem, status }) => {
                 className={"item"}
                 onClick={onOpen}
             >
+                {console.log(item)}
                 <div className={"color-bar"} style={{ backgroundColor: status.color }}/>
                 <p className={"item-title"}>{item.content}</p>
                 <p className={"item-status"}>{item.icon}</p>

@@ -6,11 +6,7 @@ import HomePage from './components/HomePage';
 function App() {
   return (
     <DndProvider backend={HTML5Backend}>
-      {/* <div style={{display:'flex', justifyContent:'center',height:'100%'}}>
-
-      </div> */}
       <Header/>
-      
       <HomePage/>
     </DndProvider>
   );

@@ -77,7 +77,8 @@ select {
 }
 
 .item {
-  font-size: 15px;
+  /* font-size: 15px; */
+  font-size: 22px;
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
