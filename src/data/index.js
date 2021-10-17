@@ -1,46 +1,41 @@
 const data = [{
     id: 1,
-    icon: "⭕️",
     status: "backlog",
-    title: "Task 1",
+    //title: "Learn about nuclear physics",
     content: "Learn about nuclear physics"
 }, {
     id: 2,
-    icon: "⭕️",
     status: "backlog",
-    title: "Task 2",
+    //title: "To buy vegetables",
     content: "To buy vegetables"
 }, {
     id: 3,
-    icon: "⭕️",
     status: "backlog",
-    title: "Task 3",
+    //title: "Play sports",
     content: "Play sports"
 }, {
     id: 4,
-    icon: "⭕️",
     status: "backlog",
-    title: "Task 4",
+    //title: "Finish reading Intro to nuclear physics",
     content: "Finish reading Intro to nuclear physics"
 }
 ];
 
 const statuses = [{
-    id: 1,
+    id: 0,
     status: "backlog",
-    icon: "⭕️",
     color: "#EB5A46"
-}, {
-    id: 2,
-    status: "in progress",
-    icon: "🔆️",
-    color: "#00C2E0"
-}, {
-    id: 3,
-    status: "done",
-    icon: "📝",
-    color: "#C377E0"
-},
+}
+// , {
+//     id: 1,
+//     status: "in progress",
+//     color: "#00C2E0"
+// }
+// , {
+//     id: 2,
+//     status: "done",
+//     color: "#C377E0"
+// },
 //  {
 //     status: "done",
 //     icon: "✅",

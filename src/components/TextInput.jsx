@@ -1,34 +1,28 @@
 import React from 'react';
 
-const TextInput = (
-    // {placeholder, onSubmit }
-    ) => {
+const TextInput = ({ addColumn, addItem, columnIndex }) => {
   const onSubmit = (event) => {
     const form = event.target;
     event.preventDefault();
-
+    console.log(columnIndex)
     const value = form.input.value.trim();
-    if (!value) return;
-
-    //onSubmit(value);
+    addColumn ? addColumn(value) : addItem(columnIndex, value);
     form.reset();
   };
 
+
     return (
-      <form
-      //onSubmit={onSubmit} 
-      //ref={node => (form = node)}
-      >
+      <form onSubmit={onSubmit}>
+        {console.log("ajouter une colonne")}
         <input
           type="text"
-          className="item-title"
+          className="TextForm__input"
           name="input"
-          placeholder={"test brk"}
-          //placeholder={placeholder}
+          placeholder={"New ..."}
           autoComplete="off"
         />
       </form>
     );
 }
 
-//export default TextInput;
+export default TextInput;

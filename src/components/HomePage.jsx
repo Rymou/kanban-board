@@ -3,6 +3,7 @@ import Item from "../components/Item";
 import DropWrapper from "../components/DropWrapper";
 import Column from "../components/Column";
 import Window from "./Window";
+import TextInput from "./TextInput";
 import { data, statuses as initStatuses } from "../data";
 import DropDragWrapper from "./DropDragWrapper";
 
@@ -14,7 +15,7 @@ const Homepage = () => {
     const [show, setShow] = useState(false);
     const [column, setColumn] = useState(null);
     const [indexOfColumn, setIndexOfColumn] = useState(null);
-
+    const [status, setStatus] = useState(null);
 
     const onOpen = (s) => {setShow(true); setColumn(s); setIndexOfColumn(s.status); console.log(column)};
 
@@ -27,7 +28,7 @@ const Homepage = () => {
         setItems(prevState => {
             const newItems = prevState
                 .filter(i => i.id !== item.id)
-                .concat({ ...item, status, icon: mapping.icon });
+                .concat({ ...item, status});
             return [ ...newItems ];
         });
     };
@@ -49,61 +50,61 @@ const Homepage = () => {
         });
     };
 
-   
-
-    
-
-    const renameColumn = (s) => {
-        //console.log(s);
-        //console.log(column)
+    const renameColumn = (status) => {
         let newItems = [];
         for(let item of items){
             let updatedItem = item;
-            console.log(indexOfColumn)
             if(item.status === indexOfColumn){
-                updatedItem.status = s;
-                console.log(updatedItem)
+                updatedItem.status = status;
             }
             newItems.push(updatedItem);         
         }
         setItems(newItems);
-        //console.log(newItems)
-
         let newColumn = column;
-        newColumn.status = s;
-        //console.log(newColumn);
-
-        //console.log(s);
-        //let newStatus = statuses.filter((status, i) => status === column.status);
-        //let statusIndex = statuses.filter((status, i) => i === column.id);
+        newColumn.status = status;
         setColumn(newColumn);
-        //console.log(scores.indexOf(10));
-        // let statusIndex = statuses.indexOf(column);
-        // let newStatuses = statuses;
-        //console.log(statuses);
     }
+
+    const addColumn = status => {
+        console.log("addColumn "+status)
+        let newColor = "#" + ((1<<24)*Math.random() | 0).toString(16);
+        const newColumn = {id: statuses.length, status, color: newColor};
+        setStatuses(prevState => {            
+            return [...prevState, newColumn];
+        });
+    };
+
+    const addItem = (key, content) => {
+        const newItem = {id: items.length+1, status: key, content: content};
+        setItems(prevState => {
+            return  [ ...prevState, newItem ];
+        });
+    };
 
     return (
         <div className={"row"}>
             {statuses.map((s,statusIndex) => {
                 return (
-                    <DropDragWrapper item={s} index={statusIndex} moveColumn={moveColumn}>
-                        {/* {console.log(statuses)}
-                        {console.log(items)} */}
-                        <div key={s.status} className={"col-wrapper"} onClick={() => onOpen(s)}>
-                            <h2 className={"col-header"}>{s.status.toUpperCase()}</h2>
+                    // <DropDragWrapper item={s} index={statusIndex} moveColumn={moveColumn}>
+                        <div key={s.status} className={"col-wrapper"} >
+                            <h2 className={"col-header"} onClick={() => onOpen(s)}>{s.status}</h2>
                                 <DropWrapper onDrop={onDrop} status={s.status}>
-                                    <Column>
+                                    <Column addItem={addItem} columnIndex={s.status} addColumn={null}>
                                         {items
                                             .filter(i => i.status === s.status)
                                             .map((i, idx) => <Item key={i.id} item={i} index={idx} moveItem={moveItem} status={s} />)
                                         }
+                                        
                                     </Column>
                                 </DropWrapper>
                         </div>
-                    </DropDragWrapper>
+                    // </DropDragWrapper>
                 );
             })}
+            {statuses.length <= 3 &&
+                <div className={"col"}><TextInput addColumn={addColumn} addItem={null}/></div>
+            }
+            
             {column &&
                 <Window
                     column={column}

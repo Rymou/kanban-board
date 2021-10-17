@@ -1,13 +1,12 @@
 import React, { Fragment, useState, useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import Window from "./Window";
-//import ITEM_TYPE from "../data/types";
 
 const Item = ({ item, index, moveItem, status }) => {
     const ref = useRef(null);
 
     const [, drop] = useDrop({
-        accept: 'item',
+        accept: "item",
         hover(item, monitor) {
             if (!ref.current) {
                 return
@@ -37,18 +36,18 @@ const Item = ({ item, index, moveItem, status }) => {
     });
 
     const [{ isDragging }, drag] = useDrag({
-        type: 'item',
+        type: "item",
         item: { ...item, index },
         collect: monitor => ({
             isDragging: monitor.isDragging()
         })
     });
 
-    // const [show, setShow] = useState(false);
+    const [show, setShow] = useState(false);
 
-    // const onOpen = () => setShow(true);
+    const onOpen = () => setShow(true);
 
-    // const onClose = () => setShow(false);
+    const onClose = () => setShow(false);
 
     drag(drop(ref));
 
@@ -58,7 +57,7 @@ const Item = ({ item, index, moveItem, status }) => {
                 ref={ref}
                 style={{ opacity: isDragging ? 0 : 1 }}
                 className={"item"}
-                //onClick={onOpen}
+                onClick={onOpen}
             >
                 <div className={"color-bar"} style={{ backgroundColor: status.color }}/>
                 <p className={"item-title"}>{item.content}</p>
