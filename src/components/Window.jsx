@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 
 const Window = ({ show, onClose, column, renameColumn }) => {
-    //const [columnName, setColumnName] = useState(column);
 
     const onSubmit = (event) => {
         const form = event.target;
@@ -28,7 +27,6 @@ const Window = ({ show, onClose, column, renameColumn }) => {
             <div>
                 <h1 style={{ flex: "1 25%" }}>{column.status}</h1>
                 <form
-                   // ref={node => (form = node)}
                     onSubmit={onSubmit}>
                         <input
                             type="text"

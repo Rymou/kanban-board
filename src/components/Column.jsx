@@ -8,10 +8,8 @@ const Column = ({ isOver, addItem, columnIndex, children }) => {
         <div 
             className={`col${className}`}
         >
-             
             {children}
             <TextInput addItem={addItem} columnIndex={columnIndex}/>
-            {console.log(columnIndex)}
         </div>
     );
 };

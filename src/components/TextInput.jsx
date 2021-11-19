@@ -4,7 +4,6 @@ const TextInput = ({ addColumn, addItem, columnIndex }) => {
   const onSubmit = (event) => {
     const form = event.target;
     event.preventDefault();
-    console.log(columnIndex)
     const value = form.input.value.trim();
     addColumn ? addColumn(value) : addItem(columnIndex, value);
     form.reset();
@@ -13,7 +12,6 @@ const TextInput = ({ addColumn, addItem, columnIndex }) => {
 
     return (
       <form onSubmit={onSubmit}>
-        {console.log("ajouter une colonne")}
         <input
           type="text"
           className="TextForm__input"

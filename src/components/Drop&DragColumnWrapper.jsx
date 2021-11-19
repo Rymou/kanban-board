@@ -1,23 +1,26 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 
-export default function DropDragWrapper({ item, index, children, moveColumn }) {
+export default function DropDragColumnWrapper({ column, index, children, moveColumn }) {
   const ref = useRef();
-  const [{ isDragging }, drag] = useDrag({
+  const [, drag] = useDrag({
+    //The types let you specify which drag sources and drop targets are compatible
     type: "column",
-    item: { ...item, index },
+    item: { index },
+    //the monitor updates the props of column components in response to the drag and drop state changes.
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   });
 
+
   const [, drop] = useDrop({
     accept: "column",
-    hover(item, monitor) {
+    hover(column, monitor) {
       if (!ref.current) {
         return;
       }
-      const dragIndex = item.index;
+      const dragIndex = column.index;
       const hoverIndex = index;
 
       if (dragIndex === hoverIndex) {
@@ -39,7 +42,7 @@ export default function DropDragWrapper({ item, index, children, moveColumn }) {
         return;
       }
       moveColumn(dragIndex, hoverIndex);
-      item.index = hoverIndex;
+      column.index = hoverIndex;
     },
   });
   drag(drop(ref));

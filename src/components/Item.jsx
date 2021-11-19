@@ -1,9 +1,9 @@
-import React, { Fragment, useState, useRef } from "react";
+import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
-import Window from "./Window";
 
-const Item = ({ item, index, moveItem, status }) => {
-    const ref = useRef(null);
+
+const Item = ({ item, index, moveItem, deleteItem, status }) => {
+    const ref = useRef();
 
     const [, drop] = useDrop({
         accept: "item",
@@ -19,10 +19,14 @@ const Item = ({ item, index, moveItem, status }) => {
             }
 
             const hoveredRect = ref.current.getBoundingClientRect();
+            //get Y position
             const hoverMiddleY = (hoveredRect.bottom - hoveredRect.top) / 2;
+            //get the last recorded { x, y } of the dragged item
             const mousePosition = monitor.getClientOffset();
+            //get X position
             const hoverClientY = mousePosition.y - hoveredRect.top;
 
+            //no need to move it
             if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
                 return;
             }
@@ -42,33 +46,27 @@ const Item = ({ item, index, moveItem, status }) => {
             isDragging: monitor.isDragging()
         })
     });
-
-    const [show, setShow] = useState(false);
-
-    const onOpen = () => setShow(true);
-
-    const onClose = () => setShow(false);
-
+    //Identify and locate the HTML item we are working with
     drag(drop(ref));
 
+    const _deleteItem = () => {
+        deleteItem(item);
+    }
+
     return (
-        <Fragment>
+        <div>
             <div
                 ref={ref}
                 style={{ opacity: isDragging ? 0 : 1 }}
                 className={"item"}
-                onClick={onOpen}
             >
+                <button style={{float: 'right'}} onClick={_deleteItem}>X</button>
                 <div className={"color-bar"} style={{ backgroundColor: status.color }}/>
                 <p className={"item-title"}>{item.content}</p>
                 <p className={"item-status"}>{item.icon}</p>
+
             </div>
-            {/* <Window
-                item={item}
-                onClose={onClose}
-                show={show}
-            /> */}
-        </Fragment>
+        </div>
     );
 };
 
